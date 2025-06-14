@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color> <!-- Artık beyaz olacak -->
+    <color name="white">#FF000000</color> <!-- Artık siyah olacak -->
+    <color name="textcolor1">#FFEEEEEE</color> <!-- Açık gri, iyi okunabilir -->
+    <color name="textcolor2">#FFAAAAAA</color> <!-- Daha silik metin için -->
+    <color name="main">#FF5C6BC0</color> <!-- Koyu arkaplana uygun, biraz daha yumuşak ton -->
+</resources>
