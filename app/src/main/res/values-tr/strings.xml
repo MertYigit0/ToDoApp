@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yapılacaklar Uygulaması</string>
+    <!-- TODO: Bu placeholder metni kaldır veya değiştir -->
+    <string name="hello_blank_fragment">Boş fragment</string>
+    <string name="save">Kaydet</string>
+    <string name="name">İsim</string>
+    <string name="todos">Yapılacaklar</string>
+    <string name="save_screen">Kaydetme Ekranı</string>
+    <string name="update">Güncelle</string>
+    <string name="update_screen">Güncelleme Ekranı</string>
+    <string name="search">Ara</string>
+</resources>
