@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.mertyigit0.todoapp.R
 import com.mertyigit0.todoapp.databinding.FragmentUpdateScreenBinding
 
@@ -29,6 +30,12 @@ class UpdateScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bundle: UpdateScreenFragmentArgs by navArgs()
+        val toDo = bundle.toDo
+        binding.imageView.setImageResource(
+            resources.getIdentifier(toDo.image, "drawable", requireContext().packageName)
+        )
+        binding.editTextName.setText(toDo.name)
     }
 
     override fun onDestroyView() {
