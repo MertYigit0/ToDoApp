@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.mertyigit0.todoapp.R
 import com.mertyigit0.todoapp.data.entity.ToDos
 import com.mertyigit0.todoapp.databinding.FragmentMainScreenBinding
+import com.mertyigit0.todoapp.ui.adapter.ToDosAdapter
 
 
 class MainScreenFragment : Fragment() {
@@ -21,6 +24,23 @@ class MainScreenFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        val toDosList = ArrayList<ToDos>()
+        val todo1 = ToDos(1, "spor", "agac")
+        val todo2 = ToDos(2, "gunes", "gunes")
+        val todo3 = ToDos(3, "roket", "roket")
+        val todo4 = ToDos(4, "semsiye", "semsiye")
+        toDosList.add(todo1)
+        toDosList.add(todo2)
+        toDosList.add(todo3)
+        toDosList.add(todo4)
+
+        val todosAdapter = ToDosAdapter(requireContext(), toDosList)
+        binding.recyclerViewToDos.adapter = todosAdapter
+        binding.recyclerViewToDos.layoutManager = LinearLayoutManager(requireContext())
+
+
 
     }
 
@@ -35,6 +55,28 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextChange(newText: String): Boolean {
+               search(newText)
+                return true
+            }
+
+
+
+
+
+
+
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+               search(query)
+                return true
+            }
+
+        })
+
+
+
 
         binding.fab.setOnClickListener {
             val newToDo = ToDos(1, "spor", "agac")
@@ -43,6 +85,10 @@ class MainScreenFragment : Fragment() {
             findNavController().navigate(toUpdateScreenFragment)
         }
 
+    }
+
+    fun search(searchText: String) {
+        Log.e("SearchResult", "search: $searchText")
     }
 
     override fun onDestroyView() {
