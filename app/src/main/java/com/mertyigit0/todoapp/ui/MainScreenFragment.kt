@@ -15,16 +15,23 @@ import com.mertyigit0.todoapp.R
 import com.mertyigit0.todoapp.data.entity.ToDos
 import com.mertyigit0.todoapp.databinding.FragmentMainScreenBinding
 import com.mertyigit0.todoapp.ui.adapter.ToDosAdapter
+import com.mertyigit0.todoapp.ui.viewmodel.MainViewModel
+import com.mertyigit0.todoapp.ui.viewmodel.SaveViewModel
 
 
 class MainScreenFragment : Fragment() {
 
     private var _binding: FragmentMainScreenBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val tempViewModel: MainViewModel by viewModels()
+        viewModel = tempViewModel
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -6,18 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.mertyigit0.todoapp.R
 import com.mertyigit0.todoapp.databinding.FragmentUpdateScreenBinding
+import com.mertyigit0.todoapp.ui.viewmodel.MainViewModel
+import com.mertyigit0.todoapp.ui.viewmodel.UpdateViewModel
 
 
 class UpdateScreenFragment : Fragment() {
 
     private var _binding: FragmentUpdateScreenBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: UpdateViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val tempViewModel: UpdateViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     override fun onCreateView(
