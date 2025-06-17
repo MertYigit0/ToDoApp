@@ -24,8 +24,20 @@ class MainScreenFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMainScreenBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // RecyclerView setup
         val toDosList = ArrayList<ToDos>()
         val todo1 = ToDos(1, "spor", "agac")
         val todo2 = ToDos(2, "gunes", "gunes")
@@ -39,21 +51,6 @@ class MainScreenFragment : Fragment() {
         val todosAdapter = ToDosAdapter(requireContext(), toDosList)
         binding.recyclerViewToDos.adapter = todosAdapter
         binding.recyclerViewToDos.layoutManager = LinearLayoutManager(requireContext())
-
-
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMainScreenBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
@@ -79,16 +76,19 @@ class MainScreenFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
-            val newToDo = ToDos(1, "spor", "agac")
-            val toUpdateScreenFragment =
-                MainScreenFragmentDirections.actionMainScreenFragmentToUpdateScreenFragment(toDo = newToDo)
-            findNavController().navigate(toUpdateScreenFragment)
+            findNavController().navigate(R.id.action_mainScreenFragment_to_saveScreenFragment)
         }
+
 
     }
 
     fun search(searchText: String) {
         Log.e("SearchResult", "search: $searchText")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Snackbar.make(requireView(), "Welcome", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
